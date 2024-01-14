@@ -24,8 +24,6 @@ NF=length(fib);
 fib(:,2)=fib(:,2)-xcg;
 fib(:,3)=fib(:,3)-zcg;
 
-%%% Rotating fibers to Principal Coordinate System
-
 R = [cos(-thetap/180*pi)  -sin(-thetap/180*pi) ; sin(-thetap/180*pi)  cos(-thetap/180*pi)];
 
 fib_rot=fib;
@@ -80,11 +78,7 @@ for i=1:length(e)
     end
     
     M1(i,k)=M1(i,k)-fib(j,5)*fib(j,3);
-    %BWS 2024 01 05, debugging difference between stressgen and plastic
-    %surface builder, believe it is difference in M2 definition, so
-    %changing sign from original code to opposite sign on M2
-        %M2(i,k)=M2(i,k)+fib(j,5)*fib(j,2);
-    M2(i,k)=M2(i,k)-fib(j,5)*fib(j,2);    
+    M2(i,k)=M2(i,k)+fib(j,5)*fib(j,2);
     P(i,k)=P(i,k)+fib(j,5);
 
   end 

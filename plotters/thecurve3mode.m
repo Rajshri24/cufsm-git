@@ -16,7 +16,7 @@ marker=['.x+*sdv^<>'];
 %
 
 % hold off
-clasLgd=[];
+
 %If the classification option is on, then start with modal classification
 if clasopt
     clas=clascell{fileindex};
@@ -32,9 +32,10 @@ if clasopt
 %         end
         hold on
         hc=bar([1:length(curve{lengthindex}(:,2))],clasplot,1,'stacked');
-        clasLgd=legend(hc,'global','distortional','local','other','Location','best','AutoUpdate','Off');
+        hlegend=legend(hc,'global','distortional','local','other');
+        set(hlegend,'Location','best');
 %         axis tight
-        colormap(axesnum,lines(4));
+        colormap lines(4)%jet
         axis([xmin xmax ymin ymax])
     end
 end
@@ -75,13 +76,9 @@ hold off
 %Add a legend
 if clasopt
     %   	legend(hc,'global','distortional','local','other')
-	if isempty(clasLgd)
-		legend(hndlmark,filenamecell{filedisplay},'Location','best','AutoUpdate','Off');
-	end
 else
-%     h=legend(hndlmark,legendname{[1:filenumbers-1]});
-%     set(h,'Location','best');
-	h=legend(hndlmark,filenamecell{filedisplay},'Location','best','AutoUpdate','Off');
+    h=legend(hndlmark,legendname{[1:filenumbers-1]});
+    set(h,'Location','best');
     %don't use latex in the legend so underscores are written ok
     releasestring=version('-release');
     release=str2num(releasestring);

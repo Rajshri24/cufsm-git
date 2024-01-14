@@ -53,7 +53,7 @@ end
 ngm=4;
 ind=zeros(1,4)+1;
 for i=1:4
-    if isempty(find(dy(:,i)))
+    if isempty(find(abs(dy(:,i))>1e-10))
         ind(i)=0;
         ngm=ngm-1;
     end
